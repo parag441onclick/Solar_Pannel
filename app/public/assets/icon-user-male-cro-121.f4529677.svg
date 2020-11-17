@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="icon-user-male-cro-121-b" x1="50%" x2="50%" y1="28.133%" y2="100%">
+      <stop offset="0%" stop-color="#FFF7E8"/>
+      <stop offset="100%" stop-color="#FFDDF4"/>
+    </linearGradient>
+    <path id="icon-user-male-cro-121-a" d="M37,0 C55,0 60,12 60,24 C60,25.7516007 60,28 60,29 C62.4555218,30.3651082 64,32.9907725 64,36 C64,40.0696031 60.9322397,43.4950461 57,44 C53.2668201,53.169282 45,60 37,60 C29,60 20.7121553,52.8337916 17,44 C13.0675112,43.4958575 10,40.0696031 10,36 C10,32.9907725 11.5443448,30.3657969 14,29 C14,28 14,25.7516007 14,24 C14,12 19,0 37,0 Z"/>
+    <linearGradient id="icon-user-male-cro-121-c" x1="50%" x2="50%" y1="28.133%" y2="100%">
+      <stop offset="0%" stop-color="#FFF"/>
+      <stop offset="100%" stop-color="#FFF3DD"/>
+    </linearGradient>
+    <linearGradient id="icon-user-male-cro-121-d" x1="50%" x2="50%" y1="39.445%" y2="85.792%">
+      <stop offset="0%" stop-color="#FFF"/>
+      <stop offset="100%" stop-color="#FFF" stop-opacity="0"/>
+    </linearGradient>
+    <path id="icon-user-male-cro-121-e" d="M0,94 L0,91.9999229 C0.986905015,81.5736089 8.93019239,72.8005201 20.1442983,68.2911014 C24.2325586,73.0011277 29.6728474,76.025152 35.8255681,76.1505001 L36.2238565,76.1545532 C42.6669866,76.1545532 48.3514485,72.9785678 52.5535803,68 C64.1620423,72.4055033 71.9912242,81.3425516 73,91.9999229 L73,94"/>
+  </defs>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(28 17)">
+    <use fill="#FFF" xlink:href="#icon-user-male-cro-121-a"/>
+    <use fill="url(#icon-user-male-cro-121-b)" stroke="#FFF" stroke-width="8" xlink:href="#icon-user-male-cro-121-a"/>
+    <use stroke="#252E31" stroke-width="3" xlink:href="#icon-user-male-cro-121-a"/>
+    <path fill="url(#icon-user-male-cro-121-c)" stroke="#252E31" stroke-width="3" d="M37,0 C56,0 59.9995566,12 59.9995566,23.8458858 L49,23 L46,17 L39,23 L14,24.0876201 L14,24 C14,12 18,0 37,0 Z"/>
+    <use fill="url(#icon-user-male-cro-121-d)" stroke="#FFF" stroke-width="8" xlink:href="#icon-user-male-cro-121-e"/>
+    <use stroke="#252E31" stroke-width="3" xlink:href="#icon-user-male-cro-121-e"/>
+  </g>
+</svg>

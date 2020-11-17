@@ -1,0 +1,224 @@
+{
+  "data": [
+    {
+      "question": "what kind of property",
+      "options": [
+        {
+          "label": "commercial",
+          "type": "radio",
+          "name": "property",
+          "value": "commercial",
+          "defaultChecked": false,
+          "id": 1
+        },
+        {
+          "label": "private",
+          "type": "radio",
+          "name": "property",
+          "value": "private",
+          "defaultChecked": false,
+          "id": 2
+        }
+      ],
+      "type": "radio",
+      "id": 1
+    },
+    {
+      "question": "what is your zip code",
+      "options": [
+        {
+          "label": "zip code",
+          "type": "text",
+          "name": "zipcode",
+          "value": null,
+          "defaultValue": null,
+          "id": 1
+        }
+      ],
+      "type": "text",
+      "id": 2
+    },
+    {
+      "question": "what are you",
+      "options": [
+        {
+          "label": "proparty owner",
+          "type": "radio",
+          "name": "type",
+          "value": "owner",
+          "defaultChecked": false,
+          "id": 1
+        },
+        {
+          "label": "tenant",
+          "type": "radio",
+          "name": "type",
+          "value": "tenant",
+          "defaultChecked": false,
+          "id": 2
+        }
+      ],
+      "type": "radio",
+      "id": 3
+    },
+    {
+      "question": "what is your electric bill per a month",
+      "options": [
+        {
+          "label": "0-200",
+          "type": "radio",
+          "name": "electric bill",
+          "value": "0-200",
+          "defaultChecked": false,
+          "id": 1
+        },
+        {
+          "label": "200-400",
+          "type": "radio",
+          "name": "electric bill",
+          "value": "200-400",
+          "defaultChecked": false,
+          "id": 2
+        },
+        {
+          "label": "400 or more",
+          "type": "radio",
+          "name": "electric bill",
+          "value": "400 or more",
+          "defaultChecked": false,
+          "id": 3
+        }
+      ],
+      "type": "radio",
+      "id": 4
+    },
+    {
+      "question": "area of ​​your roof",
+      "options": [
+        {
+          "label": "20 sq",
+          "type": "radio",
+          "name": "roof",
+          "value": "20 sq",
+          "defaultChecked": false,
+          "id": 1
+        },
+        {
+          "label": "20-49 sq",
+          "type": "radio",
+          "name": "roof",
+          "value": "20-49 sq",
+          "defaultChecked": false,
+          "id": 2
+        },
+        {
+          "label": "50-200 sq",
+          "type": "radio",
+          "name": "roof",
+          "value": "50-200 sq",
+          "defaultChecked": false,
+          "id": 3
+        },
+        {
+          "label": "200-500 sq",
+          "type": "radio",
+          "name": "roof",
+          "value": "200-500 sq",
+          "defaultChecked": false,
+          "id": 4
+        },
+        {
+          "label": "more then 500 sq",
+          "type": "radio",
+          "name": "roof",
+          "value": "more then 500 sq",
+          "defaultChecked": false,
+          "id": 5
+        }
+      ],
+      "type": "radio",
+      "id": 5
+    },
+    {
+      "question": "who is you current utility provider",
+      "options": [
+        "option1",
+        "option2",
+        "option3",
+        "option4",
+        "option5"
+      ],
+      "type": "select",
+      "id": 6
+    },
+    {
+      "question": "what is your address",
+      "options": [
+        {
+          "label": "address",
+          "type": "text",
+          "name": "address",
+          "value": null,
+          "defaultValue": null,
+          "id": 1
+        }
+      ],
+      "type": "text",
+      "id": 7
+    },
+    {
+      "question": "what is your email id",
+      "options": [
+        {
+          "label": "email id",
+          "type": "text",
+          "name": "email",
+          "value": null,
+          "defaultValue": null,
+          "id": 1
+        }
+      ],
+      "type": "text",
+      "id": 8
+    },
+    {
+      "question": "what is your name",
+      "options": [
+        {
+          "label": "firstname",
+          "type": "text",
+          "name": "firstname",
+          "value": null,
+          "defaultValue": null,
+          "id": 1
+        },
+        {
+          "label": "lastname",
+          "type": "text",
+          "name": "lastname",
+          "value": null,
+          "defaultValue": null,
+          "id": 2
+        }
+      ],
+      "type": "text",
+      "id": 9
+    },
+    {
+      "question": "what is your phone number",
+      "options": [
+        {
+          "label": "phone no",
+          "type": "text",
+          "name": "phoneno",
+          "value": null,
+          "defaultValue": null,
+          "id": 1
+        }
+      ],
+      "type": "text",
+      "id": 10
+    }
+  ],
+  "answers": []
+}
