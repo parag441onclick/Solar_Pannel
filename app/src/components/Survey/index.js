@@ -18,13 +18,12 @@ class Survey extends React.Component {
       fields: {},
     },
     field: {},
+    submitted: false,
   };
 
   componentDidMount() {
     this.confirmNavigation();
-    questions.get("/data").then((resp) => {
-      this.setState({ questions: resp.data });
-    });
+    this.setQuestions();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -32,6 +31,12 @@ class Survey extends React.Component {
       this.confirmNavigation();
     }
   }
+
+  setQuestions = () => {
+    questions.get("/data").then((resp) => {
+      this.setState({ questions: resp.data });
+    });
+  };
 
   onChange = ({ name, value }) => {
     this.setState({
@@ -50,30 +55,51 @@ class Survey extends React.Component {
     });
   };
 
+  // confirmNavigation = () => {
+  //   let checkedPageNo = Number(localStorage.getItem("checkedPageNo"));
+  //   let parmasId = Number(this.props.match.params.id);
+  //   console.log(checkedPageNo + 1 !== parmasId);
+  //   if (checkedPageNo) {
+  //     if (parmasId !== checkedPageNo + 1) {
+  //       console.log("hello");
+  //       if (parmasId >= 1 && parmasId < 10) {
+  //         this.setState({ page: checkedPageNo + 1 });
+  //         history.push(`/survey/question/${checkedPageNo + 1}`);
+  //       } else if (parmasId < 1) {
+  //         this.setState({ page: checkedPageNo + 1 });
+  //         history.push(`/survey/question/${checkedPageNo + 1}`);
+  //       } else if (parmasId >= 10) {
+  //         this.setState({ page: checkedPageNo + 1 });
+  //         history.push(`/survey/question/${checkedPageNo + 1}`);
+  //       }
+  //     } else {
+  //       console.log("lello");
+  //       if (parmasId > 10) {
+  //         this.setState({ page: checkedPageNo + 1 });
+  //         localStorage.setItem("checkedPageNo", 10);
+  //         history.push("/result");
+  //       }
+  //     }
+  //   } else {
+  //     localStorage.setItem("checkedPageNo", 0);
+  //     this.setState({ page: 1 });
+  //     history.push(`/survey/question/${1}`);
+  //   }
+  // };
+
   confirmNavigation = () => {
     let checkedPageNo = Number(localStorage.getItem("checkedPageNo"));
     let parmasId = Number(this.props.match.params.id);
-    console.log(checkedPageNo + 1 !== parmasId);
     if (checkedPageNo) {
-      if (parmasId !== checkedPageNo + 1) {
-        console.log("hello");
-        if (parmasId >= 1 && parmasId < 10) {
-          this.setState({ page: checkedPageNo + 1 });
-          history.push(`/survey/question/${checkedPageNo + 1}`);
-        } else if (parmasId < 1) {
-          this.setState({ page: checkedPageNo + 1 });
-          history.push(`/survey/question/${checkedPageNo + 1}`);
-        } else if (parmasId >= 10) {
-          this.setState({ page: checkedPageNo + 1 });
-          history.push(`/survey/question/${checkedPageNo + 1}`);
-        }
+      if (parmasId >= checkedPageNo) {
+        this.setState({ page: checkedPageNo + 1 });
+        history.push(`/survey/question/${checkedPageNo + 1}`);
+      }
+
+      if (parmasId <= checkedPageNo && parmasId >= 1) {
+        history.push(`/survey/question/${parmasId}`);
       } else {
-        console.log("lello");
-        if (parmasId > 10) {
-          this.setState({ page: checkedPageNo + 1 });
-          localStorage.setItem("checkedPageNo", 10);
-          history.push("/result");
-        }
+        history.push(`/survey/question/${checkedPageNo + 1}`);
       }
     } else {
       localStorage.setItem("checkedPageNo", 0);
@@ -83,7 +109,8 @@ class Survey extends React.Component {
   };
 
   incermentRoute = (page) => {
-    if (page <= 10) {
+    this.setState({ submitted: true})
+    if (page <= 10 && Object.values(this.state.field).length !== 0) {
       localStorage.setItem(
         "checkedPageNo",
         Number(localStorage.getItem("checkedPageNo")) + 1
@@ -92,28 +119,62 @@ class Survey extends React.Component {
       questions
         .post("/answers", this.state.field)
         .then((resp) => {
-          console.log(resp);
+          this.setState({ field: {}, page: page + 1, submitted: false });
+        })
+        .catch((err) => {});
+      history.push(`/survey/question/${page + 1}`);
+    }
+  };
+
+  decrementRoute = (page) => {
+    if (page >= 1) {
+      localStorage.setItem(
+        "checkedPageNo",
+        Number(localStorage.getItem("checkedPageNo")) - 1
+      );
+
+      questions
+        .post("/answers", this.state.field)
+        .then((resp) => {
           this.setState({ field: {} });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {});
 
-      this.setState({ page: page + 1 });
+      this.setState({ page: page - 1 });
     }
   };
 
   renderQuestion = (question) => {
     return question.map((item) => {
-      console.log("type", question);
       if (item.type === "radio") {
-        return <RadioType item={item} onChange={this.onChange} />;
+        return (
+          <RadioType
+            item={item}
+            onChange={this.onChange}
+            field={this.state.field}
+            submitted={this.state.submitted}
+          />
+        );
       }
 
-      if (item.type === "text") {
-        return <TextType item={item} onChange={this.onChange} />;
+      if (item.type === "text" || item.type === "email" || item.type === "tel") {
+        return (
+          <TextType
+            item={item}
+            onChange={this.onChange}
+            field={this.state.field}
+          />
+        );
       }
 
       if (item.type === "select") {
-        return <SelectType item={item} onChange={this.onChange} />;
+        return (
+          <SelectType
+            item={item}
+            onChange={this.onChange}
+            field={this.state.field}
+          />
+        );
       }
     });
   };
@@ -128,20 +189,48 @@ class Survey extends React.Component {
     return this.renderQuestion(question);
   };
 
+  renderNoPageFound = () => {
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12">
+            <div className="error-template">
+              <h1>Oops!</h1>
+              <h2>404 Not Found</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   render() {
     const { page, questions } = this.state;
+    if (questions === null) {
+      return this.renderNoPageFound();
+    }
+
     return (
       <div>
         <h2>Save by comparing solar panel quotes</h2>
         <div className="d-flex flex-column justify-content-around">
           {this.renderQuestions(questions)}
           <Link
+            style={{ display: page !== 1 ? "block" : "none" }}
             className="next-page"
-            onClick={(e) => this.incermentRoute(page)}
-            to={page < 10 ? `/survey/question/${page + 1}` : "/result"}
+            onClick={(e) => this.decrementRoute(page)}
+            to={page < 10 ? `/survey/question/${page - 1}` : "/result"}
           >
-            Next
+            Back
           </Link>
+          <div onClick={(e) => this.setState({ submitted: true })}>
+            <Link
+              className="next-page"
+              onClick={(e) => this.incermentRoute(page)}
+            >
+              Next
+            </Link>
+          </div>
         </div>
       </div>
     );

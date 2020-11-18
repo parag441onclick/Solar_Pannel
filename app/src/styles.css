@@ -78,6 +78,15 @@ body {
     padding-left: 40px
 }
 
+.error-radio {
+  background-color: #6f0410;
+  border: 1px solid red;
+}
+
+.error-message {
+  color: red;
+}
+
 #options label {
     display: block;
     margin-bottom: 15px;

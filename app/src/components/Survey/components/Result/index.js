@@ -12,7 +12,7 @@ class Result extends React.Component {
       .then((resp) => {
           this.setState({ answers: resp.data });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {});
   }
 
   renderSurveyResult = () => {
@@ -35,7 +35,7 @@ class Result extends React.Component {
 
   render() {
     return (
-      <table class="table table-dark">
+      <table className="table table-dark">
         <thead>
           <tr>
             <th scope="col">FieldName</th>
